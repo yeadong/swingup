@@ -55,7 +55,7 @@ def main():
 
     # to prevent the pendulum from blowing up, we introduce
     # a system wide damping
-    space.damping = 0.7
+    space.damping = 0.6
 
 
 
@@ -69,7 +69,6 @@ def main():
     pj = pymunk.PinJoint(pole_body, agent_body, (0,100,), (0, 0))
     pj.distance = 0
     pj.collide_bodies = False
-    pj.error_bias = 0
     space.add(agent_body, agent_shape, pole_body, pole_shape, move_x_joint, pj)
 
     keys = {
@@ -142,7 +141,7 @@ def main():
                 else:
                     force_direction = -1
 
-        f = (force_direction*4000, 0)
+        f = (force_direction*8000, 0)
         print(f)
         agent_body.apply_force_at_local_point(f, agent_body.position)
         print(agent_body)
