@@ -1,0 +1,19 @@
+<Solution>
+  <PropertyGroup Name="SwingUp" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="assets">
+          <Image Name="background-1x.png" />
+          <Image Name="background-2x.png" />
+          <Image Name="background-3x.png" />
+          <Image Name="circle-1x.png" />
+          <Image Name="circle-2x.png" />
+          <Image Name="circle-3x.png" />
+        </Folder>
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Project Name="Circle.csd" Type="Node" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
