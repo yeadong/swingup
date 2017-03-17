@@ -6,7 +6,7 @@
       <ObjectData Name="Node" Tag="2" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="circle" ActionTag="-2018123698" Tag="3" IconVisible="False" LeftMargin="-111.0000" RightMargin="-111.0000" TopMargin="-111.0000" BottomMargin="-111.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Sprite_2" ActionTag="802000140" Tag="6" IconVisible="False" LeftMargin="-111.0000" RightMargin="-111.0000" TopMargin="-111.0000" BottomMargin="-111.0000" ctype="SpriteObjectData">
             <Size X="222.0000" Y="222.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />
@@ -14,7 +14,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="assets/circle-1x.png" Plist="" />
+            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>

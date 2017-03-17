@@ -20,6 +20,10 @@
 		485577301E7723FE00D0867C /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4855772D1E7723FE00D0867C /* Agent.cpp */; };
 		485577331E77242A00D0867C /* AgentReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 485577311E77242A00D0867C /* AgentReader.cpp */; };
 		485577341E77242A00D0867C /* AgentReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 485577311E77242A00D0867C /* AgentReader.cpp */; };
+		486732851E79567400CB427B /* RailReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 486732831E79567400CB427B /* RailReader.cpp */; };
+		486732861E79567400CB427B /* RailReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 486732831E79567400CB427B /* RailReader.cpp */; };
+		486732891E79579300CB427B /* Rail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 486732871E79579300CB427B /* Rail.cpp */; };
+		4867328A1E79579300CB427B /* Rail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 486732871E79579300CB427B /* Rail.cpp */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
 		503AE10017EB989F00D1A890 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FB17EB989F00D1A890 /* AppController.mm */; };
 		503AE10117EB989F00D1A890 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FC17EB989F00D1A890 /* main.m */; };
@@ -82,6 +86,10 @@
 		4855772E1E7723FE00D0867C /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
 		485577311E77242A00D0867C /* AgentReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AgentReader.cpp; sourceTree = "<group>"; };
 		485577321E77242A00D0867C /* AgentReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentReader.h; sourceTree = "<group>"; };
+		486732831E79567400CB427B /* RailReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RailReader.cpp; sourceTree = "<group>"; };
+		486732841E79567400CB427B /* RailReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RailReader.h; sourceTree = "<group>"; };
+		486732871E79579300CB427B /* Rail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rail.cpp; sourceTree = "<group>"; };
+		486732881E79579300CB427B /* Rail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rail.h; sourceTree = "<group>"; };
 		503AE0F617EB97AB00D1A890 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		503AE0F717EB97AB00D1A890 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503AE0FA17EB989F00D1A890 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = ios/AppController.h; sourceTree = SOURCE_ROOT; };
@@ -259,6 +267,10 @@
 				4855772E1E7723FE00D0867C /* Agent.h */,
 				485577311E77242A00D0867C /* AgentReader.cpp */,
 				485577321E77242A00D0867C /* AgentReader.h */,
+				486732831E79567400CB427B /* RailReader.cpp */,
+				486732841E79567400CB427B /* RailReader.h */,
+				486732871E79579300CB427B /* Rail.cpp */,
+				486732881E79579300CB427B /* Rail.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -440,8 +452,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				486732891E79579300CB427B /* Rail.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* MainScene.cpp in Sources */,
+				486732851E79567400CB427B /* RailReader.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				4855772F1E7723FE00D0867C /* Agent.cpp in Sources */,
 				485577331E77242A00D0867C /* AgentReader.cpp in Sources */,
@@ -455,9 +469,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				4867328A1E79579300CB427B /* Rail.cpp in Sources */,
 				485577301E7723FE00D0867C /* Agent.cpp in Sources */,
 				485577341E77242A00D0867C /* AgentReader.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				486732861E79567400CB427B /* RailReader.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* MainScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
