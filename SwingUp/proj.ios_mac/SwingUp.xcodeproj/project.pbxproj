@@ -24,6 +24,8 @@
 		486732861E79567400CB427B /* RailReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 486732831E79567400CB427B /* RailReader.cpp */; };
 		486732891E79579300CB427B /* Rail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 486732871E79579300CB427B /* Rail.cpp */; };
 		4867328A1E79579300CB427B /* Rail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 486732871E79579300CB427B /* Rail.cpp */; };
+		48C375D21E7D38E80092FDA6 /* GLES-Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48C375D01E7D38E80092FDA6 /* GLES-Render.cpp */; };
+		48C375D31E7D38E80092FDA6 /* GLES-Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48C375D01E7D38E80092FDA6 /* GLES-Render.cpp */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
 		503AE10017EB989F00D1A890 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FB17EB989F00D1A890 /* AppController.mm */; };
 		503AE10117EB989F00D1A890 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FC17EB989F00D1A890 /* main.m */; };
@@ -90,6 +92,8 @@
 		486732841E79567400CB427B /* RailReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RailReader.h; sourceTree = "<group>"; };
 		486732871E79579300CB427B /* Rail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rail.cpp; sourceTree = "<group>"; };
 		486732881E79579300CB427B /* Rail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rail.h; sourceTree = "<group>"; };
+		48C375D01E7D38E80092FDA6 /* GLES-Render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "GLES-Render.cpp"; sourceTree = "<group>"; };
+		48C375D11E7D38E80092FDA6 /* GLES-Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		503AE0F617EB97AB00D1A890 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		503AE0F717EB97AB00D1A890 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503AE0FA17EB989F00D1A890 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = ios/AppController.h; sourceTree = SOURCE_ROOT; };
@@ -261,6 +265,8 @@
 			children = (
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
+				48C375D01E7D38E80092FDA6 /* GLES-Render.cpp */,
+				48C375D11E7D38E80092FDA6 /* GLES-Render.h */,
 				46880B8619C43A87006E1F66 /* MainScene.cpp */,
 				46880B8719C43A87006E1F66 /* MainScene.h */,
 				4855772D1E7723FE00D0867C /* Agent.cpp */,
@@ -452,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48C375D21E7D38E80092FDA6 /* GLES-Render.cpp in Sources */,
 				486732891E79579300CB427B /* Rail.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* MainScene.cpp in Sources */,
@@ -468,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48C375D31E7D38E80092FDA6 /* GLES-Render.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				4867328A1E79579300CB427B /* Rail.cpp in Sources */,
 				485577301E7723FE00D0867C /* Agent.cpp in Sources */,

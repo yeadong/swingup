@@ -9,18 +9,18 @@
             <Image Name="background-1x.png" />
             <Image Name="circle-1x.png" />
             <Image Name="rail-1x.png" />
-            <Image Name="rail-2x.png" />
-            <Image Name="rail-3x.png" />
           </Folder>
           <Folder Name="resources-2x">
             <Image Name="agent-2x.png" />
             <Image Name="background-2x.png" />
             <Image Name="circle-2x.png" />
+            <Image Name="rail-2x.png" />
           </Folder>
           <Folder Name="resources-3x">
             <Image Name="agent-3x.png" />
             <Image Name="background-3x.png" />
             <Image Name="circle-3x.png" />
+            <Image Name="rail-3x.png" />
           </Folder>
           <Folder Name="resources-4x" />
         </Folder>
