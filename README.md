@@ -1,13 +1,22 @@
-# swingup
+# :arrow_up: SwingUp
 :octocat: Swingup - a barebone game :video_game: of the cart-pole swing-up scenario :arrow_up: implemented with pygame :snake:
 
-Swingup is a light weight game based on pygame. The physics are lifted by [pymunk](www.pymunk.org/en/latest/), a 2d physics library which itself is a pythonic wrapper around a C library called [chipmunk](https://chipmunk-physics.net/).
+Swingup is a light weight game based on cocos2d-x. With the regard to the game physics, the heavy lifting is implemented by utilizing [box2d](http://box2d.org/).
 
 
-## Installation
-Currently, there is no `setup.py` file, which will change in a while.
-Until then, simply use pip and `pip install -r requirements.txt` to download
-and install your dependencies.
+## :arrow_left: Prerequisits
+This section will focus on getting SwingUp up and running on :apple: MacOS and :door: Windows.
 
-## Play and Enjoy
-In order to start the game, simply run the `swingup.py` script via `python swingup.py`
+### :apple: MacOS
+The setup is pretty simple. The things you'll need are:
+
++ :tiger: MacOs Snow Leopard or later
++ :negative_squared_cross_mark: xCode aaand
++ :rocket: a rocket capable flying to the moon - JK
+
+### :door: Windows
+
+I'll have to investigate this a little bit further :pencil2:
+
+## :video_game: Play and Enjoy
+In order to start the :game_die: game, simply run the project in xCodr or....:pencil2: [windows investigation in progress... :package:]  

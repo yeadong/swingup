@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "Agent.h"
 #include "GLES-Render.h"
+#include "ui/CocosGUI.h"
 #include <Box2D/Box2D.h>
 
 
@@ -15,8 +16,8 @@
 
 // VELOCITY
 // Horizontal Velocity of the agent
-const static float PTM_RATIO = 1134.0f / 2.0f;
-const static float VELOCTY = 1.2f;
+const static float PTM_RATIO = 1134.0f / 3.0f;
+const static float VELOCTY = 1.7f;
 
 
 // Agent attribtues
@@ -26,7 +27,7 @@ const static float VELOCTY = 1.2f;
 // AGENT_RESTITUTION: Agent restitution [-]
 // AGENT_WIDTH: Agent width [m]
 // AGENT_HEIGHT: Agent height [m]
-const static float AGENT_MASS = 1.0f;
+const static float AGENT_MASS = 2.8f;
 const static float AGENT_FRICTION = 0.001f;
 const static float AGENT_RESTITUTION = 0.0f;
 const static float AGENT_WIDTH = 0.1f;
@@ -39,11 +40,11 @@ const static float AGENT_HEIGHT = 0.05f;
 // POLE_RESTITUTION: Agent restitution [-]
 // POLE_WIDTH: Agent width [m]
 // POLE_HEIGHT: Agent height [m]
-const static float POLE_MASS = 0.1f;
+const static float POLE_MASS = 1.0f;
 const static float POLE_FRICTION = 0.0f;
 const static float POLE_RESTITUTION = 0.0f;
 const static float POLE_WIDTH = 0.01f;
-const static float POLE_HEIGHT = 0.18;
+const static float POLE_HEIGHT = 0.3f;
 
 
 
@@ -82,22 +83,32 @@ public:
     void setupKeyboardHandling();
     void setupWorld();
     void pausePlay();
+    void setPhysicsWorld(b2World* world);
+    b2World* getPhysicsWorld();
+    float normalizeAngle(float angle);
     float r2d(float radiant);
+    
     virtual void draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transform, uint32_t flags) override;
+    
+    // reward functions
+    float calcLinearReward(float angle);
+    float calcCosReward(float angle);
+    float calcCombinedReward(float angle);
+    void setReward(float reward);
+    
     
 private:
     GLESDebugDraw* _debugDraw;
-    void setPhysicsWorld(b2World* world);
-    b2World* getPhysicsWorld();
     b2World* sceneWorld;
     void update(float dt) override;
     Agent* agent;
     b2Body* agentBody;
     KeyList pressedKeys;
-    float normalizeAngle(float angle);
     cocos2d::Node* rootNode;
     GameState gameState;
     b2Body* poleBody;
+    cocos2d::ui::Text* rewardLabel;
+    float reward;
 };
 
 

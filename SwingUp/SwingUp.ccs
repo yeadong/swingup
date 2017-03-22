@@ -9,6 +9,9 @@
             <Image Name="background-1x.png" />
             <Image Name="circle-1x.png" />
             <Image Name="rail-1x.png" />
+            <Image Name="rail-2x.png" />
+            <Image Name="rail-3x.png" />
+            <Image Name="clearing.png" />
           </Folder>
           <Folder Name="resources-2x">
             <Image Name="agent-2x.png" />

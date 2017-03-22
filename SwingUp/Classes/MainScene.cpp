@@ -39,6 +39,7 @@ bool MainScene::init()
         return false;
     }
     this->gameState = GameState::Playing;
+    
     CSLoader* instance = CSLoader::getInstance();
     instance->registReaderObject("AgentReader", (ObjectFactory::Instance) AgentReader::getInstance);
 
@@ -46,8 +47,10 @@ bool MainScene::init()
     auto rootNode = CSLoader::createNode("MainScene.csb");
     addChild(rootNode);
     this->rootNode = rootNode;
-
     
+    // let's assign our reward label to the private variable:
+    this->rewardLabel = rootNode->getChildByName<ui::Text*>("rewardValue");
+  
     // setup event dispatcher
     this->setupKeyboardHandling();
     return true;
@@ -195,7 +198,7 @@ void MainScene::setupWorld()
     b2FixtureDef edgeBoxDef;
     edgeBoxDef.shape = &edgeBox;
     edgeBoxDef.filter.categoryBits = Categories::BOUNDARY;
-    edgeBoxDef.filter.maskBits = Categories::CART | Categories::POLE;
+    edgeBoxDef.filter.maskBits = Categories::CART;
     
     //right
     edgeBox.Set(b2Vec2((origin.x + visibleSize.width) / PTM_RATIO, (origin.y + visibleSize.height) / PTM_RATIO), b2Vec2((origin.x + visibleSize.width) / PTM_RATIO, origin.y / PTM_RATIO));
@@ -335,7 +338,11 @@ void MainScene::update(float dt)
         
         this->getPhysicsWorld()->Step(dt, velocityIterations, positionIterations);
         
-        CCLOG("Angle: %.2f", this->normalizeAngle(this->r2d(this->poleBody->GetAngle())));
+        // first calculate the reward and then call this->setReward()
+        // to store the reward internally and update the UI
+        float reward = this->calcCombinedReward(this->normalizeAngle(this->r2d(this->poleBody->GetAngle())));
+        this->setReward(reward);
+        
         for (b2Body* body = this->getPhysicsWorld()->GetBodyList(); body; body = body->GetNext())
         {
             
@@ -371,7 +378,7 @@ float MainScene::normalizeAngle(float angle)
 
 float MainScene::r2d(float r)
 {
-    float ret = r*180.0f/M_PI;
+    float ret = r * 180.0f / M_PI;
     return ret;
 }
 
@@ -379,4 +386,73 @@ float MainScene::r2d(float r)
 void MainScene::pausePlay()
 {
     this->gameState = GameState::Paused;
+}
+
+
+// reward functions
+/**
+ Calculates a reward based on the float angle input of the pole.
+ The input angles from |0°| to |180°| are interpolated linearly 
+ to values between -1 and 1.
+ @param <float> The angle of the pole from the resting position
+ @return <float> The reward corresponding to the current angle.
+ bar and "," as the half bar.
+ */
+float MainScene::calcLinearReward(float angle)
+{
+    float absAngle = fabsf(angle);
+    float ret = -1.0f + 1.0f / 90.0f * absAngle;
+    return ret;
+}
+
+
+/**
+ Calculates a reward based on the float angle input of the pole.
+ The input angles from |0°| to |180°| are mapped to values
+ between -1 and 1 utilizing a cosine function.
+ @param <float> The angle of the pole from the resting position
+ @return <float> The reward corresponding to the current angle.
+ bar and "," as the half bar.
+ */
+float MainScene::calcCosReward(float angle)
+{
+    float absAngle = fabsf(angle);
+    float ret = -cos(absAngle * M_PI / 180.0f);
+    return ret;
+}
+
+/**
+ Calculates a reward based on the float angle input of the pole.
+ The input angles from |0°| to |180°| are mapped to values
+ between -1 and 1 utilizing a combination of the priorly introduced
+ reward functions: between |0°| and |90°|, the reward is
+ calculated with help of a linear function, between |90°| and |180°|
+ a cosine function is utilized.
+ @param <float> The angle of the pole from the resting position
+ @return <float> The reward corresponding to the current angle.
+ bar and "," as the half bar.
+ */
+
+float MainScene::calcCombinedReward(float angle)
+{
+    float absAngle = fabs(angle);
+    if(absAngle < 90.0f)
+    {
+        return this->calcLinearReward(angle);
+    }
+    else {
+        return this->calcCosReward(angle);
+    }
+}
+
+/**
+ Stores the reward internally and updates the UI
+ @param <float> The current reward
+ @return <void>
+ */
+void MainScene::setReward(float reward)
+{
+    this->reward = reward;
+    
+    this->rewardLabel->setString(std::to_string(this->reward));
 }
