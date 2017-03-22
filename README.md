@@ -1,5 +1,5 @@
 # :arrow_up: SwingUp
-:octocat: Swingup - a barebone game :video_game: of the cart-pole swing-up scenario :arrow_up: implemented with pygame :snake:
+:octocat: Swingup - a barebone game :video_game: of the cart-pole swing-up scenario :arrow_up: implemented with cocos2d-x
 
 Swingup is a light weight game based on cocos2d-x. With the regard to the game physics, the heavy lifting is implemented by utilizing [box2d](http://box2d.org/).
 
@@ -8,15 +8,26 @@ Swingup is a light weight game based on cocos2d-x. With the regard to the game p
 This section will focus on getting SwingUp up and running on :apple: MacOS and :door: Windows.
 
 ### :apple: MacOS
-The setup is pretty simple. The things you'll need are:
 
 + :tiger: MacOs Snow Leopard or later
 + :negative_squared_cross_mark: xCode aaand
 + :rocket: a rocket capable flying to the moon - JK
 
 ### :door: Windows
++ :sweat_smile: Some recent version of Windows
++ :neckbeard: Visual Studio
 
-I'll have to investigate this a little bit further :pencil2:
 
 ## :video_game: Play and Enjoy
-In order to start the :game_die: game, simply run the project in xCodr or....:pencil2: [windows investigation in progress... :package:]  
+This section will explain how to build and run the game.
+
+### :apple: MacOS
+Simply run following commands in our favorite cmd - I prefer iTerm2 and zshell.
+
+`$ open /path/to/swingup/SwingUp/proj.ios_mac/SwingUp.xcodeproj`
+
+This will start xCode. Now press `cmd+r` to run the project. 
+
+
+### :door: Windows
+Simply open the visual studio project located in `/path/to/swingup/SwingUp/proj.win32/` and run the project.
