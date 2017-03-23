@@ -18,10 +18,10 @@ def convert_to_pygame_coords(p):
     """Small hack to convert pymunk to pygame coordinates"""
     return int(p.x), int(-p.y+600)
 
-def setup_pole(mass=0.4, radius=0, size=(10, 200)):
+def setup_pole(mass=1, radius=0, size=(10, 150)):
     moment = pymunk.moment_for_box(mass, size)
     pole_body = pymunk.Body(mass, moment)
-    pole_body.position = (DISPLAY_WIDTH/2, DISPLAY_HEIGHT / 2 - 100)
+    pole_body.position = (DISPLAY_WIDTH/2, DISPLAY_HEIGHT / 2)
     pole_body.start_position = Vec2d(pole_body.position)
     pole_shape = pymunk.Poly.create_box(pole_body, size, radius)
     pole_shape.elasticity = 1
@@ -55,7 +55,7 @@ def main():
 
     # to prevent the pendulum from blowing up, we introduce
     # a system wide damping
-    space.damping = 0.7
+    space.damping = 0.6
 
 
 
@@ -66,10 +66,10 @@ def main():
     pole_body, pole_shape = setup_pole()
 
     move_x_joint = pymunk.GrooveJoint(space.static_body, agent_body, (0, DISPLAY_HEIGHT / 2), (DISPLAY_WIDTH, DISPLAY_HEIGHT / 2), (0,0))
-    pj = pymunk.PinJoint(pole_body, agent_body, (0,100,), (0, 0))
+    pj = pymunk.PivotJoint(pole_body, agent_body, (0, 75,), (0, 0))
     pj.distance = 0
+    pj.error_bias = pow(1.0-1.0, 60.0)
     pj.collide_bodies = False
-    pj.error_bias = 0
     space.add(agent_body, agent_shape, pole_body, pole_shape, move_x_joint, pj)
 
     keys = {
@@ -142,10 +142,10 @@ def main():
                 else:
                     force_direction = -1
 
-        f = (force_direction*4000, 0)
-        print(f)
+        f = (force_direction*7000, 0)
+
         agent_body.apply_force_at_local_point(f, agent_body.position)
-        print(agent_body)
+
 
         # NOTE: `step` HAS to be float/double
         space.step(1/FRAMERATE)
