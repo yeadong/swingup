@@ -12,6 +12,9 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 
+// This class will represent the rail
+// on which the agent is driving on.
+// Right now, it's not used anywhere in the project.
 class Rail : public cocos2d::Node
 {
 public:

@@ -12,6 +12,12 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 
+// This class represents the agent of our little game.
+// Right now, it merely has a getter and setter class
+// for the corresponding physic's body, which will change
+// in the future. NOTE: I am planning on moving all the
+// logic and code which deals with initializing and positioning
+// of the agent into a function of the Agent class.
 class Agent : public cocos2d::Node
 {
 public:
@@ -25,7 +31,7 @@ public:
     
     CREATE_FUNC(Agent);
 
-protected:
+private:
     b2Body* body;
 };
 

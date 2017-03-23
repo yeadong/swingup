@@ -26,6 +26,19 @@
 
 USING_NS_CC;
 
+
+
+/**
+ * NOTE:
+ * ==========
+ * GLES-Render.cpp and its respective header file were introduced
+ * to the project in order to realize debug drawing of physics bodies
+ * in order to avoid the necessity to create sprites in cocosstudio.
+ * 
+ * The following stack overflow post describes how to setup
+ * debug drawing: http://stackoverflow.com/questions/22282391/how-to-enable-box2d-debug-draw-with-coco2d-x-3-0-beta-2
+ */
+
 GLESDebugDraw::GLESDebugDraw()
 : mRatio( 1.0f )
 {

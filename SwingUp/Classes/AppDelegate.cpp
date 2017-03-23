@@ -41,8 +41,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     FileUtils::getInstance()->addSearchPath("res");
     
+    // let's determine which resource we need to used
+    // first we get our current framesize and based on
+    // its size, we set our asset folder to 1x, 2x, 3x
+    // or 4x to achieve chrystal clear images on every
+    // screen :-)
     std::vector<std::string> searchResolutionOrder(1);
-    
     cocos2d::Size targetSize = glview->getFrameSize();
     
     if (targetSize.height < 481.0f)
@@ -66,7 +70,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     // create a scene. it's an autorelease object
     auto scene = MainScene::createScene();
-
     // run
     director->runWithScene(scene);
 
@@ -76,7 +79,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
-
     // if you use SimpleAudioEngine, it must be pause
     // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
@@ -84,7 +86,6 @@ void AppDelegate::applicationDidEnterBackground() {
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
-
     // if you use SimpleAudioEngine, it must resume here
     // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

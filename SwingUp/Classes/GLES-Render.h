@@ -24,6 +24,17 @@
 #include "Box2D/Box2D.h"
 #include "cocos2d.h"
 
+/**
+ * NOTE:
+ * ==========
+ * GLES-Render.h and its respective implementation file were introduced
+ * to the project in order to realize debug drawing of physics bodies
+ * in order to avoid the necessity to create sprites in cocosstudio.
+ *
+ * The following stack overflow post describes how to setup
+ * debug drawing: http://stackoverflow.com/questions/22282391/how-to-enable-box2d-debug-draw-with-coco2d-x-3-0-beta-2
+ */
+
 struct b2AABB;
 
 // This class implements debug drawing callbacks that are invoked
