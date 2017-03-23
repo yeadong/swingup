@@ -11,14 +11,15 @@
 // Globals definition
 // ==================
 // PTM_RATIO: Pixel to meter ratio
-// As we're initiliazing our display 1134px wide, a PTM ratio
-// of 567 sets our screen width to equal 2 meters
+// As we're initiliazing our display 1136px wide, a PTM ratio
+// of 1136/3 sets our screen width to equal 3 meters.
 
 // VELOCITY
 // Horizontal Velocity of the agent
-const static float PTM_RATIO = 1134.0f / 3.0f;
+const static float PTM_RATIO = 1136.0f / 3.0f;
 const static float VELOCTY = 1.7f;
-
+const static int VELOCITY_ITERATIONS =10;
+const static int POSITION_ITERATIONS = 10;
 
 // Agent attribtues
 // ==================
@@ -44,10 +45,17 @@ const static float POLE_MASS = 1.0f;
 const static float POLE_FRICTION = 0.0f;
 const static float POLE_RESTITUTION = 0.0f;
 const static float POLE_WIDTH = 0.01f;
-const static float POLE_HEIGHT = 0.3f;
+const static float POLE_HEIGHT = 0.35f;
+const static float POLE_ANGULAR_DAMPING = 0.2f;
 
 
-
+// The KeyList is used to keep track
+// on user input, since the keyboard listener
+// can only listen to key strokes and releases,
+// we need a structure we can consult to implement
+// following edge cases:
+// + Press L Press R Release L, expect to go R again
+// + Press R Press L Release R, expect to go L again
 class KeyList
 {
 public:
@@ -55,6 +63,14 @@ public:
     bool right = false;
 };
 
+
+// Here we define our mask and category bits
+// for our physics model. These are used to define
+// every physics body in following ways:
+// The categoryBits define WHAT the body IS, e.g.
+// a boundry, a rail, cart or pole.
+// The `maskBits` on the other hand defined with which
+// other body the body will COLLIDE with
 enum Categories {
     BOUNDARY = 0x0001,
     RAIL =     0x0002,
@@ -62,6 +78,10 @@ enum Categories {
     POLE =     0x0008,
 };
 
+
+// We utilize ths GameState class to play/ pause the game
+// by pressing space in order we want to check
+// e.g. the reward value or similar.
 enum class GameState {
     Playing,
     Paused
@@ -82,7 +102,6 @@ public:
     // setup keyboard handling in case we're on a pc
     void setupKeyboardHandling();
     void setupWorld();
-    void pausePlay();
     void setPhysicsWorld(b2World* world);
     b2World* getPhysicsWorld();
     float normalizeAngle(float angle);
@@ -91,10 +110,12 @@ public:
     virtual void draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transform, uint32_t flags) override;
     
     // reward functions
+    // These are used to calculate and set the reward
+    // internally plus updating UI Label
+    void setReward(float reward);
     float calcLinearReward(float angle);
     float calcCosReward(float angle);
     float calcCombinedReward(float angle);
-    void setReward(float reward);
     
     
 private:

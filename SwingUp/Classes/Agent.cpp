@@ -11,7 +11,11 @@
 #include <iostream>
 using namespace cocos2d;
 
-// init function by cocos2d studio
+/**
+ * @desc Checker function if the Node was already initialized
+ * @params: None
+ * @return: <bool>
+ */
 bool Agent::init()
 {
     if (! Node::init())

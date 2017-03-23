@@ -10,6 +10,12 @@
 
 using namespace cocos2d;
 
+
+/**
+ * @desc Checker function if the Node was already initialized
+ * @params: None
+ * @return: <bool>
+ */
 bool Rail::init()
 {
     if (! Node::init())
