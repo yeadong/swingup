@@ -6,7 +6,7 @@
 #include "GLES-Render.h"
 #include "ui/CocosGUI.h"
 #include <Box2D/Box2D.h>
-
+#include "RewardFunction.h"
 
 // Globals definition
 // ==================
@@ -48,6 +48,15 @@ const static float POLE_WIDTH = 0.01f;
 const static float POLE_HEIGHT = 0.35f;
 const static float POLE_ANGULAR_DAMPING = 0.2f;
 
+// Reward settings
+// ==================
+// Choose which reward function to use:
+// + linear
+// + Trigonometric
+// + Piecewisely defined (lin/trigonometric)
+// Here, we set the desired reward function, which we'll
+// check in MainScene.cpp
+const static RewardFunctionType REWARD_FUNCTION = RewardFunctionType::Linear;
 
 // The KeyList is used to keep track
 // on user input, since the keyboard listener
@@ -71,7 +80,8 @@ public:
 // a boundry, a rail, cart or pole.
 // The `maskBits` on the other hand defined with which
 // other body the body will COLLIDE with
-enum Categories {
+enum Categories
+{
     BOUNDARY = 0x0001,
     RAIL =     0x0002,
     CART =     0x0004,
@@ -104,8 +114,6 @@ public:
     void setupWorld();
     void setPhysicsWorld(b2World* world);
     b2World* getPhysicsWorld();
-    float normalizeAngle(float angle);
-    float r2d(float radiant);
     
     virtual void draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transform, uint32_t flags) override;
     
@@ -113,11 +121,8 @@ public:
     // These are used to calculate and set the reward
     // internally plus updating UI Label
     void setReward(float reward);
-    float calcLinearReward(float angle);
-    float calcCosReward(float angle);
-    float calcCombinedReward(float angle);
-    
-    
+    void setStrategy(RewardFunctionType fnType);
+
 private:
     GLESDebugDraw* _debugDraw;
     b2World* sceneWorld;
@@ -130,6 +135,10 @@ private:
     b2Body* poleBody;
     cocos2d::ui::Text* rewardLabel;
     float reward;
+    float calcLinearReward(float angle);
+    float calcCosReward(float angle);
+    float calcCombinedReward(float angle);
+    RewardFunction* rewardFn;
 };
 
 

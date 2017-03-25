@@ -21,6 +21,11 @@ This section will focus on getting SwingUp up and running on :apple: MacOS and :
 ## :video_game: Play and Enjoy
 This section will explain how to build and run the game.
 
+### :left_right_arrow: Both operating systems
+
+In case you would like to train your neural network, SwingUp offers three ways to calculate the current reward.
+
+
 ### :apple: MacOS
 Simply run following commands in our favorite cmd - I prefer iTerm2 and zshell.
 

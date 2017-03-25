@@ -50,14 +50,21 @@ bool MainScene::init()
     
     // let's assign our reward label to the private variable:
     this->rewardLabel = rootNode->getChildByName<ui::Text*>("rewardValue");
-  
+    
     // setup event dispatcher
     this->setupKeyboardHandling();
+    
+    // let's initialize our reward function
+    // herefor, we utilize the strategy pattern used
+    // accross software development.
+    // To read more on this pattern, visit
+    // https://sourcemaking.com/design_patterns/strategy/cpp/1
+    this->setStrategy(REWARD_FUNCTION);
     return true;
 }
 
 /**
- The update method is an overrid of cocos2d::Layer.
+ The update method is an override of cocos2d::Layer.
  In it, we handle our game specific updates e.g.
  calling the `Step` function on our physics world to
  keep the simulation's and the game's time in sync,
@@ -79,10 +86,14 @@ void MainScene::update(float dt)
         Layer::update(dt);
         this->getPhysicsWorld()->Step(dt, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
         
+        float deflectionAngle = this->poleBody->GetAngle();
+        float reward = this->rewardFn->getReward(deflectionAngle);
+        this->setReward(reward);
+        
         // First calculate the reward and then call this->setReward()
         // to store the reward internally and update the UI
-        float reward = this->calcCombinedReward(this->normalizeAngle(this->r2d(this->poleBody->GetAngle())));
-        this->setReward(reward);
+        // float reward = this->calcReward();
+        // this->setReward(reward);
         
         // Now let's update our visual representation of our physics world. We iterate over all bodies
         // in our world. In case the body contains user data, meaning it has a sprite associated to it
@@ -211,7 +222,6 @@ void MainScene::setupWorld()
     agentBodyDef.position.Set(center.x, center.y);
     b2Body* agentBody = world->CreateBody(&agentBodyDef);
     
-    
     // Now that we have created a physical body, we need to attach
     // a shape to it so that our physics engine knows its collision
     // geometry. We achieve this by creating a b2PolygonShape called agentShape
@@ -231,7 +241,6 @@ void MainScene::setupWorld()
     
     // Call setBody on this->agent to have later access to it
     this->agentBody = agentBody;
-    
     
     // Now we have created our rail and agent, it's time to
     // initialize our pole, which we'll later constrain to
@@ -393,86 +402,6 @@ b2World* MainScene::getPhysicsWorld()
 
 
 /**
- This function transforms radiants to degrees.
- Following physical principle is leveraged for the calculation:
- 1rad = pi/180° -> phi[°] = radAngle*180°/pi
- @param <float> The pole angle in radiants.
- @return <float> The pole angle in degrees.
- */
-float MainScene::r2d(float r)
-{
-    return r * 180.0f / M_PI;
-}
-
-
-/**
- This function normalizes any given angle to a value between
- -180° and 180°.
- @param <float> The unnormalized angle [°]
- @return <float> The normalized angle [°]
- */
-float MainScene::normalizeAngle(float angle)
-{
-    angle = fmod(angle + 180,360);
-    if (angle < 0)
-        angle += 360;
-    return angle - 180.0f;
-}
-
-
-// reward functions
-/**
- Calculates a reward based on the float angle input of the pole.
- The input angles from |0°| to |180°| are interpolated linearly 
- to values between -1 and 1.
- @param <float> The angle of the pole from the resting position
- @return <float> The reward corresponding to the current angle.
- */
-float MainScene::calcLinearReward(float angle)
-{
-    float absAngle = fabsf(angle);
-    float ret = -1.0f + 1.0f / 90.0f * absAngle;
-    return ret;
-}
-
-
-/**
- Calculates a reward based on the float angle input of the pole.
- The input angles from |0°| to |180°| are mapped to values
- between -1 and 1 utilizing a cosine function.
- @param <float> The angle of the pole from the resting position
- @return <float> The reward corresponding to the current angle.
- */
-float MainScene::calcCosReward(float angle)
-{
-    float absAngle = fabsf(angle);
-    float ret = -cos(absAngle * M_PI / 180.0f);
-    return ret;
-}
-
-/**
- Calculates a reward based on the float angle input of the pole.
- The input angles from |0°| to |180°| are mapped to values
- between -1 and 1 utilizing a combination of the priorly introduced
- reward functions: between |0°| and |90°|, the reward is
- calculated with help of a linear function, between |90°| and |180°|
- a cosine function is utilized.
- @param <float> The angle of the pole from the resting position
- @return <float> The reward corresponding to the current angle.
- */
-float MainScene::calcCombinedReward(float angle)
-{
-    float absAngle = fabs(angle);
-    if(absAngle < 90.0f)
-    {
-        return this->calcLinearReward(angle);
-    }
-    else {
-        return this->calcCosReward(angle);
-    }
-}
-
-/**
  Stores the reward internally and updates the UI
  @param <float> The current reward
  @return <void>
@@ -480,6 +409,28 @@ float MainScene::calcCombinedReward(float angle)
 void MainScene::setReward(float reward)
 {
     this->reward = reward;
-    
     this->rewardLabel->setString(std::to_string(this->reward));
+}
+
+/**
+ Initiates the reward function
+ @param <RewardFunctionType>
+ @return <void>
+ */
+void MainScene::setStrategy(RewardFunctionType fnType)
+{
+    switch(fnType)
+    {
+        case RewardFunctionType::Linear:
+        {
+            this->rewardFn = new LinearAngularReward();
+        }
+            break;
+            
+        case RewardFunctionType::Trigonometric:
+        {
+            this->rewardFn = new TrigonometricReward();
+        }
+            break;
+    }
 }
