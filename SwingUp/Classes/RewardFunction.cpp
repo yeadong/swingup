@@ -74,3 +74,15 @@ float TrigonometricReward::calcReward(float angle)
     float ret = -cos(absAngle * M_PI / 180.0f);
     return ret;
 }
+
+float TwoPiecewiseReward::calcReward(float angle)
+{
+ if (angle < 90.0f)
+ {
+     return this->firstSection->getReward(angle);
+ } else
+ {
+     return this->secondSection->getReward(angle);
+ }
+    
+}
