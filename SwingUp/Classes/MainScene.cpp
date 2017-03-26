@@ -54,11 +54,21 @@ bool MainScene::init()
     // setup event dispatcher
     this->setupKeyboardHandling();
     
-    // let's initialize our reward function
-    // herefor, we utilize the strategy pattern used
-    // accross software development.
+    // let's initialize our reward function.
+    // Herefor, weautilize the strategy pattern
     // To read more on this pattern, visit
     // https://sourcemaking.com/design_patterns/strategy/cpp/1
+    // First, we populate our rewardMap, which will hold the
+    // RewardFunctionType as key and a pointer to the respective
+    // RewardFunction as a value. Note that all composite reward functions
+    // must be at the end of the map in order to make the program work.
+    
+    // FIXME: This should be handled more efficiently.
+    // We create every single reward function in MainScene::init() instead
+    // of merely instantiating the RewardFunction set up in the settings.
+    rewardMap.insert(std::pair<RewardFunctionType, RewardFunction*>(RewardFunctionType::Linear, new LinearReward()));
+    rewardMap.insert(std::pair<RewardFunctionType, RewardFunction*>(RewardFunctionType::Trigonometric, new TrigonometricReward()));
+    rewardMap.insert(std::pair<RewardFunctionType, RewardFunction*>(RewardFunctionType::TwoPiecewise, new TwoPiecewiseReward(rewardMap[PIECEWISE_FIRST_SECTION], rewardMap[PIECEWISE_SECOND_SECTION])));
     this->setStrategy(REWARD_FUNCTION);
     return true;
 }
@@ -419,18 +429,5 @@ void MainScene::setReward(float reward)
  */
 void MainScene::setStrategy(RewardFunctionType fnType)
 {
-    switch(fnType)
-    {
-        case RewardFunctionType::Linear:
-        {
-            this->rewardFn = new LinearAngularReward();
-        }
-            break;
-            
-        case RewardFunctionType::Trigonometric:
-        {
-            this->rewardFn = new TrigonometricReward();
-        }
-            break;
-    }
+    this->rewardFn = rewardMap[fnType];
 }

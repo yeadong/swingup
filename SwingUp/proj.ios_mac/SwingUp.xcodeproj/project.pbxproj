@@ -88,6 +88,7 @@
 		46880B8719C43A87006E1F66 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
 		481D24C61E869B91008843AA /* RewardFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RewardFunction.cpp; sourceTree = "<group>"; };
 		481D24C71E869B91008843AA /* RewardFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardFunction.h; sourceTree = "<group>"; };
+		481D24CA1E886A2F008843AA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		4855772D1E7723FE00D0867C /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent.cpp; sourceTree = "<group>"; };
 		4855772E1E7723FE00D0867C /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
 		485577311E77242A00D0867C /* AgentReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AgentReader.cpp; sourceTree = "<group>"; };
@@ -275,6 +276,7 @@
 				46880B8719C43A87006E1F66 /* MainScene.h */,
 				481D24C61E869B91008843AA /* RewardFunction.cpp */,
 				481D24C71E869B91008843AA /* RewardFunction.h */,
+				481D24CA1E886A2F008843AA /* Constants.h */,
 				4855772D1E7723FE00D0867C /* Agent.cpp */,
 				4855772E1E7723FE00D0867C /* Agent.h */,
 				485577311E77242A00D0867C /* AgentReader.cpp */,
